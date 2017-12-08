@@ -23,3 +23,12 @@ Bench all:
 ```
 cargo bench
 ```
+
+## License
+
+This project is licensed under CC0:
+https://creativecommons.org/publicdomain/zero/1.0/
+
+All content from Project Euler (PE) is licensed under:
+Attribution-NonCommercial-ShareAlike 2.0 UK: England & Wales.
+https://creativecommons.org/licenses/by-nc-sa/2.0/uk/
