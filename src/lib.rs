@@ -1,4 +1,6 @@
 #![feature(test)]
+#![feature(iterator_step_by)]
+#![feature(inclusive_range_syntax)]
 
 mod sieve;
 
@@ -35,7 +37,7 @@ macro_rules! problem {
 
         pub fn run_all(name: &str) {
             println!("# {}", name);
-            $(println!("{:10} => {} = {}", stringify!($name), stringify!($test), $test);)*
+            $(println!("{:10} => {} = {:?}", stringify!($name), stringify!($test), $test);)*
         }
 
         problem!($($rest)*);
@@ -61,5 +63,6 @@ modules![
     p003,
     p004,
     p005,
+    p007,
     p067,
 ];
