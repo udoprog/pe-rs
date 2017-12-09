@@ -31,7 +31,7 @@ fn run(digits: u32) -> u64 {
 
 problem!{
     tests => [
-        example => (9009, run(2)),
-        q => (906609, run(3)),
+        example => (run(2), 9009),
+        q => (run(3), 906609),
     ];
 }

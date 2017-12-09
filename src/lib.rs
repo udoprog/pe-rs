@@ -2,24 +2,22 @@
 #![feature(iterator_step_by)]
 #![feature(inclusive_range_syntax)]
 
+#[cfg(test)]
+mod hex_slice;
 mod sieve;
 
+extern crate sha2;
 extern crate test;
 
 #[macro_export]
 macro_rules! problem {
-    (tests => [$($name:ident => ($exp:expr, $test:expr),)*]; $($rest:tt)*) => {
+    (tests => [$($test:tt)*]; $($rest:tt)*) => {
         #[cfg(test)]
         mod benches {
             #[allow(unused)]
             use super::*;
 
-            $(
-            #[bench]
-            fn $name(b: &mut ::test::Bencher) {
-                b.iter(|| $test);
-            }
-            )*
+            problem!(@bench $($test)*);
         }
 
         #[cfg(test)]
@@ -27,21 +25,73 @@ macro_rules! problem {
             #[allow(unused)]
             use super::*;
 
-            $(
-            #[test]
-            fn $name() {
-                assert_eq!($test, $exp);
-            }
-            )*
+            problem!(@test $($test)*);
         }
 
         pub fn run_all(name: &str) {
             println!("# {}", name);
-            $(println!("{:10} => {} = {:?}", stringify!($name), stringify!($test), $test);)*
+            problem!(@print $($test)*);
         }
 
         problem!($($rest)*);
     };
+
+    (@bench $name:ident => ($test:expr, $exp:expr), $($rest:tt)*) => {
+        #[bench]
+        fn $name(b: &mut ::test::Bencher) {
+            b.iter(|| $test);
+        }
+
+        problem!(@bench $($rest)*);
+    };
+
+    (@bench $name:ident => {$test:expr, $exp:expr}, $($rest:tt)*) => {
+        #[bench]
+        fn $name(b: &mut ::test::Bencher) {
+            b.iter(|| $test);
+        }
+
+        problem!(@bench $($rest)*);
+    };
+
+    (@bench) => {};
+
+    (@test $name:ident => ($test:expr, $exp:expr), $($rest:tt)*) => {
+        #[test]
+        fn $name() {
+            assert_eq!($test, $exp);
+        }
+
+        problem!(@test $($rest)*);
+    };
+
+    (@test $name:ident => {$test:expr, $exp:expr}, $($rest:tt)*) => {
+        #[test]
+        fn $name() {
+            use $crate::sha2::Digest;
+            let mut hasher = $crate::sha2::Sha256::default();
+            hasher.input($test.to_string().as_bytes());
+            let output = hasher.result();
+            let hex = $crate::hex_slice::HexSlice::new(&output[..]).to_string();
+            assert_eq!(hex.as_str(), $exp);
+        }
+
+        problem!(@test $($rest)*);
+    };
+
+    (@test) => {};
+
+    (@print $name:ident => ($test:expr, $exp:expr), $($rest:tt)*) => {
+        println!("{:10} => {} = {:?}", stringify!($name), stringify!($test), $test);
+        problem!(@print $($rest)*)
+    };
+
+    (@print $name:ident => {$test:expr, $exp:expr}, $($rest:tt)*) => {
+        println!("{:10} => {} = {:?}", stringify!($name), stringify!($test), $test);
+        problem!(@print $($rest)*)
+    };
+
+    (@print) => {};
 
     () => {
     };

@@ -52,6 +52,6 @@ fn run() -> u64 {
 
 problem!{
     tests => [
-        q => (7273, run()),
+        q => (run(), 7273),
     ];
 }

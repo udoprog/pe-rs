@@ -18,7 +18,7 @@ fn run(upper: u64) -> u64 {
 
 problem!{
     tests => [
-        example => (2520, run(10)),
-        q => (232792560, run(20)),
+        example => (run(10), 2520),
+        q => (run(20), 232792560),
     ];
 }

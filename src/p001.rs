@@ -4,7 +4,7 @@ fn run(end: u32) -> u32 {
 
 problem!{
     tests => [
-        example => (23, run(10)),
-        q => (233168, run(1000)),
+        example => (run(10), 23),
+        q => (run(1000), 233168),
     ];
 }

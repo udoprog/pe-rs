@@ -26,7 +26,7 @@ fn run(count: usize) -> u64 {
 
 problem!{
     tests => [
-        example => (5832, run(4)),
-        q => (23514624000, run(13)),
+        example => (run(4), 5832),
+        q => (run(13), 23514624000),
     ];
 }

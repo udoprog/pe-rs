@@ -59,6 +59,6 @@ fn run(count: usize) -> u64 {
 
 problem!{
     tests => [
-        q => (70600674, run(4)),
+        q => (run(4), 70600674),
     ];
 }

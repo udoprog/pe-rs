@@ -4,3 +4,4 @@ version = "0.1.0"
 authors = ["John-John Tedro <udoprog@tedro.se>"]
 
 [dependencies]
+sha2 = "*"

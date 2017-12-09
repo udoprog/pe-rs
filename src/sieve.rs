@@ -44,4 +44,3 @@ impl Iterator for Sieve {
         None
     }
 }
-

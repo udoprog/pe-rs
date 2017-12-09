@@ -4,7 +4,7 @@ fn run(count: u64) -> u64 {
 
 problem!{
     tests => [
-        example => (2640, run(10)),
-        q => (25164150, run(100)),
+        example => (run(10), 2640),
+        q => (run(100), 25164150),
     ];
 }

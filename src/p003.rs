@@ -15,7 +15,7 @@ fn run(mut number: u64) -> u64 {
 
 problem!{
     tests => [
-        example => (29, run(13195)),
-        q => (6857, run(600851475143)),
+        example => (run(13195), 29),
+        q => (run(600851475143), 6857),
     ];
 }
