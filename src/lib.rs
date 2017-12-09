@@ -2,12 +2,22 @@
 #![feature(iterator_step_by)]
 #![feature(inclusive_range_syntax)]
 
-#[cfg(test)]
 mod hex_slice;
 mod sieve;
 
 extern crate sha2;
 extern crate test;
+
+/// Function used to hash answers.
+///
+/// Uses dynamic dispatch to avoid excessive monomorphization.
+fn hash(value: &::std::fmt::Display) -> String {
+    use sha2::Digest;
+    let mut hasher = sha2::Sha256::default();
+    hasher.input(value.to_string().as_bytes());
+    let output = hasher.result();
+    hex_slice::HexSlice::new(&output[..]).to_string()
+}
 
 #[macro_export]
 macro_rules! problem {
@@ -28,9 +38,10 @@ macro_rules! problem {
             problem!(@test $($test)*);
         }
 
-        pub fn run_all(name: &str) {
+        #[allow(unused)]
+        pub fn run_all(name: &str, spoil: bool) {
             println!("# {}", name);
-            problem!(@print $($test)*);
+            problem!(@print spoil $($test)*);
         }
 
         problem!($($rest)*);
@@ -68,12 +79,7 @@ macro_rules! problem {
     (@test $name:ident => {$test:expr, $exp:expr}, $($rest:tt)*) => {
         #[test]
         fn $name() {
-            use $crate::sha2::Digest;
-            let mut hasher = $crate::sha2::Sha256::default();
-            hasher.input($test.to_string().as_bytes());
-            let output = hasher.result();
-            let hex = $crate::hex_slice::HexSlice::new(&output[..]).to_string();
-            assert_eq!(hex.as_str(), $exp);
+            assert_eq!($crate::hash(&$test).as_str(), $exp);
         }
 
         problem!(@test $($rest)*);
@@ -81,17 +87,35 @@ macro_rules! problem {
 
     (@test) => {};
 
-    (@print $name:ident => ($test:expr, $exp:expr), $($rest:tt)*) => {
+    (@print $spoil:ident $name:ident => ($test:expr, $exp:expr), $($rest:tt)*) => {
         println!("{:10} => {} = {:?}", stringify!($name), stringify!($test), $test);
-        problem!(@print $($rest)*)
+        problem!(@print $spoil $($rest)*)
     };
 
-    (@print $name:ident => {$test:expr, $exp:expr}, $($rest:tt)*) => {
-        println!("{:10} => {} = {:?}", stringify!($name), stringify!($test), $test);
-        problem!(@print $($rest)*)
+    (@print $spoil:ident $name:ident => {$test:expr, $exp:expr}, $($rest:tt)*) => {
+        let _r = $test;
+
+        if $spoil {
+            println!(
+                "{:10} => {} = {:?} <{}>",
+                stringify!($name),
+                stringify!($test),
+                _r,
+                $crate::hash(&_r)
+            );
+        } else {
+            println!(
+                "{:10} => {} = <{}>",
+                stringify!($name),
+                stringify!($test),
+                $crate::hash(&_r)
+            );
+        }
+
+        problem!(@print $spoil $($rest)*)
     };
 
-    (@print) => {};
+    (@print $spoil:ident) => {};
 
     () => {
     };
@@ -101,8 +125,9 @@ macro_rules! modules {
     ($($mod:ident,)*) => {
         $(mod $mod;)*
 
-        pub fn run_all() {
-            $(self::$mod::run_all(stringify!($mod));)*
+        pub fn run_all(spoil: bool) {
+            println!("WARNING: SPOILERS ARE PRINTED!");
+            $(self::$mod::run_all(stringify!($mod), spoil);)*
         }
     }
 }

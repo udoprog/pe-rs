@@ -32,6 +32,6 @@ fn run(digits: u32) -> u64 {
 problem!{
     tests => [
         example => (run(2), 9009),
-        q => (run(3), 906609),
+        q => {run(3), "aa74f52b4c428d89606b411bc165eb81a6266821ecc9b4f30cdb70c5c930f4d9"},
     ];
 }

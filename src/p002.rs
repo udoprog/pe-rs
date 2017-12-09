@@ -29,6 +29,6 @@ fn run(limit: u32) -> u32 {
 problem!{
     tests => [
         example => (run(1000), 798),
-        q => (run(4000000), 4613732),
+        q => {run(4000000), "1f5882e19314ac13acca52ad5503184b3cb1fd8dbeea82e0979d799af2361704"},
     ];
 }

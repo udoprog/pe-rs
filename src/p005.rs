@@ -19,6 +19,6 @@ fn run(upper: u64) -> u64 {
 problem!{
     tests => [
         example => (run(10), 2520),
-        q => (run(20), 232792560),
+        q => {run(20), "1ba90ab11bfb2d2400545337212b0de2a5c7f399215175ade6396e91388912b1"},
     ];
 }
