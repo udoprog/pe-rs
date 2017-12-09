@@ -1,5 +1,7 @@
 #![feature(test)]
 
+mod sieve;
+
 extern crate test;
 
 #[macro_export]
@@ -58,5 +60,6 @@ modules![
     p002,
     p003,
     p004,
+    p005,
     p067,
 ];
