@@ -17,7 +17,7 @@ macro_rules! problem {
             $(
             #[bench]
             fn $name(b: &mut ::test::Bencher) {
-                b.iter(|| $exp);
+                b.iter(|| $test);
             }
             )*
         }
