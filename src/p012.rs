@@ -2,7 +2,7 @@ use std::mem;
 
 /// Divisors for the given number.
 pub fn divisors(n: u64) -> impl Iterator<Item = u64> {
-    let ceil = (n as f64).sqrt().ceil() as u64;
+    let ceil = (n as f64).sqrt() as u64 + 1;
 
     (1u64..ceil).filter(move |d| n % d == 0).flat_map(move |d| {
         let mut more = vec![d];
@@ -41,7 +41,7 @@ impl Iterator for Triangle {
 
 fn run(limit: u64) -> u64 {
     for n in Triangle::new() {
-        if divisors(n).count() as u64 >= limit {
+        if divisors(n).count() as u64 > limit {
             return n;
         }
     }
