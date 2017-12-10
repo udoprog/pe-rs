@@ -1,13 +1,11 @@
-use std::io::{BufRead, BufReader, Cursor};
+use std::io::{BufRead, BufReader, Cursor, Read};
 use std::cell::RefCell;
 use std::rc::Rc;
 
 type Line = Rc<RefCell<Vec<u64>>>;
 
-static TRIANGLE: &str = include_str!("p067_triangle.txt");
-
-fn run() -> u64 {
-    let reader = BufReader::new(Cursor::new(TRIANGLE));
+pub fn run<R: Read>(reader: R) -> u64 {
+    let reader = BufReader::new(reader);
 
     let mut lines: Vec<(Option<Line>, Line)> = Vec::new();
 
@@ -50,8 +48,10 @@ fn run() -> u64 {
     first[0]
 }
 
+static INPUT: &str = include_str!("p067_triangle.txt");
+
 problem!{
     tests => [
-        q => {run(), "53f66b6783cb7552d83015df01b0d5229569fce1dd7d1856335c7244b9a3ded6"},
+        q => {run(Cursor::new(INPUT)), "53f66b6783cb7552d83015df01b0d5229569fce1dd7d1856335c7244b9a3ded6"},
     ];
 }
