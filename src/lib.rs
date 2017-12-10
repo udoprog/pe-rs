@@ -2,6 +2,7 @@
 #![feature(iterator_step_by)]
 #![feature(inclusive_range_syntax)]
 #![feature(conservative_impl_trait)]
+#![feature(io)]
 
 mod hex_slice;
 mod sieve;
@@ -153,5 +154,6 @@ modules![
     p019,
     p020,
     p021,
+    p022,
     p067,
 ];
