@@ -1,5 +1,20 @@
 use std::mem;
 
+/// Divisors for the given number.
+pub fn divisors(n: u64) -> impl Iterator<Item = u64> {
+    let ceil = (n as f64).sqrt().ceil() as u64;
+
+    (1u64..ceil).filter(move |d| n % d == 0).flat_map(move |d| {
+        let mut more = vec![d];
+
+        if d != (n / d) {
+            more.push(n / d);
+        }
+
+        more.into_iter()
+    })
+}
+
 struct Triangle {
     sum: u64,
     current: u64,
@@ -26,21 +41,7 @@ impl Iterator for Triangle {
 
 fn run(limit: u64) -> u64 {
     for n in Triangle::new() {
-        let mut divs = 0u64;
-
-        let ceil = (n as f64).sqrt().ceil() as u64;
-
-        for d in 1u64..ceil {
-            if n % d == 0 {
-                divs += 1;
-
-                if d != (n / d) {
-                    divs += 1;
-                }
-            }
-        }
-
-        if divs >= limit {
+        if divisors(n).count() as u64 >= limit {
             return n;
         }
     }
