@@ -30,13 +30,7 @@ macro_rules! problem {
             problem!(@bench $($test)*);
         }
 
-        #[cfg(test)]
-        mod tests {
-            #[allow(unused)]
-            use super::*;
-
-            problem!(@test $($test)*);
-        }
+        problem!(@test $($test)*);
 
         #[allow(unused)]
         pub fn run_all(name: &str, spoil: bool) {
@@ -149,5 +143,6 @@ modules![
     p014,
     p015,
     p016,
+    p017,
     p067,
 ];
