@@ -119,9 +119,13 @@ macro_rules! modules {
     ($($mod:ident,)*) => {
         $(mod $mod;)*
 
-        pub fn run_all(spoil: bool) {
+        pub fn run_all(spoil: bool, filters: &[&str]) {
             println!("WARNING: SPOILERS ARE PRINTED!");
-            $(self::$mod::run_all(stringify!($mod), spoil);)*
+            $(
+            if filters.iter().all(|f| stringify!($mod).contains(f)) {
+                self::$mod::run_all(stringify!($mod), spoil);
+            }
+            )*
         }
     }
 }
@@ -144,5 +148,6 @@ modules![
     p015,
     p016,
     p017,
+    p018,
     p067,
 ];
