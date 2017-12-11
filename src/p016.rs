@@ -1,3 +1,5 @@
+/// Keywords: bigint
+
 use std::iter::repeat;
 
 pub fn run<I>(factors: I) -> u64 where I: IntoIterator<Item = u64> {
