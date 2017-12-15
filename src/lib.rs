@@ -8,6 +8,7 @@ mod hex_slice;
 mod sieve;
 
 extern crate sha2;
+extern crate num_bigint;
 extern crate test;
 
 /// Function used to hash answers.
@@ -157,5 +158,6 @@ modules![
     p022,
     p023,
     p024,
+    p025,
     p067,
 ];

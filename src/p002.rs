@@ -1,26 +1,39 @@
+/// Keywords: sequences, fib
+
+use std::ops;
 use std::mem;
 
-pub struct Fib {
-    v: (u32, u32),
+pub struct Fib<N> {
+    v: (N, N),
 }
 
-impl Fib {
-    pub fn new() -> Fib {
-        Fib { v: (1, 1) }
+impl<N> Fib<N>
+where
+    N: From<u32>,
+{
+    pub fn new() -> Fib<N> {
+        Fib { v: (1.into(), 1.into()) }
     }
 }
 
-impl Iterator for Fib {
-    type Item = u32;
+impl<N> Iterator for Fib<N>
+where
+    N: Clone + ops::Add<Output = N>,
+{
+    type Item = N;
 
-    fn next(&mut self) -> Option<u32> {
-        let next = (self.v.1, self.v.0 + self.v.1);
-        Some(mem::replace(&mut self.v, next).1)
+    fn next(&mut self) -> Option<N> {
+        let next = {
+            let (ref a, ref b) = self.v;
+            (b.clone(), a.clone() + b.clone())
+        };
+
+        Some(mem::replace(&mut self.v, next).0)
     }
 }
 
 fn run(limit: u32) -> u32 {
-    Fib::new()
+    Fib::<u32>::new()
         .take_while(|v| *v < limit)
         .filter(|v| v % 2 == 0)
         .sum()
