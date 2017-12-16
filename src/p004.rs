@@ -1,3 +1,5 @@
+// Keywords: palindrome
+
 fn run(digits: u32) -> u64 {
     let upper = 10u64.pow(digits);
     let lower = 10u64.pow(digits - 1);

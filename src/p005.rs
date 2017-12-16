@@ -1,3 +1,5 @@
+/// Keywords: prime
+
 use sieve::Sieve;
 
 fn run(upper: u64) -> u64 {

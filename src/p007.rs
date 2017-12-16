@@ -1,3 +1,5 @@
+/// Keywords: primes
+
 fn run(count: u64) -> u64 {
     return (3u64..)
         .step_by(2)
