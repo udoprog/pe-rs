@@ -3,14 +3,17 @@
 #![feature(inclusive_range_syntax)]
 #![feature(conservative_impl_trait)]
 #![feature(io)]
+#![feature(nonzero)]
 
 mod hex_slice;
 mod sieve;
+mod permutation;
 
 extern crate sha2;
 extern crate num_bigint;
 extern crate num_traits;
 extern crate test;
+extern crate core;
 
 /// Function used to hash answers.
 ///
@@ -165,5 +168,6 @@ modules![
     p028,
     p029,
     p030,
+    p031,
     p067,
 ];
