@@ -6,3 +6,4 @@ authors = ["John-John Tedro <udoprog@tedro.se>"]
 [dependencies]
 sha2 = "*"
 num-bigint = "*"
+num-traits = "*"
