@@ -1,7 +1,7 @@
-use sieve::Sieve;
+use sieve::FixedSieve;
 
 fn run(limit: u64) -> u64 {
-    Sieve::new(limit).sum()
+    FixedSieve::new(limit).sum()
 }
 
 problem!{
