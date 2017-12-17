@@ -4,6 +4,7 @@
 #![feature(conservative_impl_trait)]
 #![feature(io)]
 #![feature(nonzero)]
+#![feature(vec_remove_item)]
 
 mod hex_slice;
 mod sieve;
@@ -162,5 +163,6 @@ modules![
     p030,
     p031,
     p032,
+    p033,
     p067,
 ];

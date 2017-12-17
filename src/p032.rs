@@ -26,7 +26,7 @@ fn is_pandigital(digits: &[u8]) -> bool {
     found.into_iter().take(digits.len()).all(|n| *n)
 }
 
-fn digits(n: u64) -> impl Iterator<Item = u8> {
+pub fn digits(n: u64) -> impl Iterator<Item = u8> {
     use std::iter;
 
     iter::repeat(()).scan(n, |s, _| {
