@@ -29,14 +29,6 @@ fn hash(value: &::std::fmt::Display) -> String {
 #[macro_export]
 macro_rules! problem {
     (tests => [$($test:tt)*]; $($rest:tt)*) => {
-        #[cfg(test)]
-        mod benches {
-            #[allow(unused)]
-            use super::*;
-
-            problem!(@bench $($test)*);
-        }
-
         problem!(@test $($test)*);
 
         #[allow(unused)]
@@ -169,5 +161,6 @@ modules![
     p029,
     p030,
     p031,
+    p032,
     p067,
 ];
