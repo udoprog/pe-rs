@@ -10,7 +10,7 @@ pub fn lower_divisors(n: u64) -> impl Iterator<Item = u64> {
     (1u64..ceil).filter(move |d| n % d == 0)
 }
 
-fn is_pandigital(digits: &[u8]) -> bool {
+pub fn is_pandigital(digits: &[u8]) -> bool {
     let mut found = [false; 9];
 
     for d in digits {
