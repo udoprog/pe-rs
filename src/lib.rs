@@ -9,6 +9,7 @@
 mod hex_slice;
 mod sieve;
 mod permutation;
+mod input;
 
 extern crate sha2;
 extern crate num_bigint;
@@ -172,5 +173,6 @@ modules![
     p039,
     p040,
     p041,
+    p042,
     p067,
 ];
