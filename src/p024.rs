@@ -2,7 +2,7 @@
 
 use std::mem;
 
-struct Permutations<T>
+pub struct Permutations<T>
 where
     T: Ord,
 {
