@@ -1,6 +1,7 @@
 /// Keywords: primes
 
 use std::collections::{VecDeque, HashSet};
+use prime::is_prime;
 
 fn run() -> u64 {
     let mut queue = VecDeque::new();
@@ -22,7 +23,7 @@ fn run() -> u64 {
         for d in 0..10 {
             let test = (n * 10) + d;
 
-            if is_prime(test) {
+            if test == 0 || is_prime(test) {
                 queue.push_back((order * 10, test));
             }
         }
@@ -32,27 +33,13 @@ fn run() -> u64 {
 
     fn is_right_truncatable(n: u64, mut order: u64) -> bool {
         while order > 0 {
-            if !is_prime(n % order) {
+            let test = n % order;
+
+            if !(test == 0 || is_prime(test)) {
                 return false;
             }
 
             order = order / 10;
-        }
-
-        true
-    }
-
-    fn is_prime(n: u64) -> bool {
-        if n == 1 {
-            return false;
-        }
-
-        let ceil = (n as f64).sqrt().ceil() as u64;
-
-        for i in 2..=ceil {
-            if n % i == 0 {
-                return false;
-            }
         }
 
         true

@@ -1,6 +1,7 @@
 /// Keywords: primes
 
 use p024::Permutations;
+use prime::is_prime;
 
 fn run() -> u64 {
     for n in (1..10).rev() {
@@ -23,22 +24,6 @@ fn run() -> u64 {
     }
 
     panic!("no prime");
-
-    fn is_prime(n: u64) -> bool {
-        if n == 1 {
-            return false;
-        }
-
-        let ceil = (n as f64).sqrt().ceil() as u64;
-
-        for i in 2..=ceil {
-            if n % i == 0 {
-                return false;
-            }
-        }
-
-        true
-    }
 }
 
 problem!{

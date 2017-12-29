@@ -1,6 +1,7 @@
 /// Keywords: none
 
 use sieve::Sieve;
+use prime::is_prime;
 
 fn run() -> Option<i64> {
     let mut max = 0;
@@ -11,7 +12,7 @@ fn run() -> Option<i64> {
 
     for a in -999i64..=999 {
         for b in b.iter().cloned() {
-            let n = (0i64..).map(|n| n.pow(2) + a * n + b).take_while(is_prime).count();
+            let n = (0i64..).map(|n| n.pow(2) + a * n + b).filter(|v| *v > 0).take_while(|v| is_prime(*v as u64)).count();
 
             if n > max {
                 biggest = Some((a, b));
@@ -21,25 +22,6 @@ fn run() -> Option<i64> {
     }
 
     return biggest.map(|b| b.0 * b.1);
-
-    fn is_prime(num: &i64) -> bool {
-        let num = *num;
-
-        if num <= 0 {
-            return false;
-        }
-
-        let num = num as u64;
-        let upper = (num as f64).sqrt().ceil() as u64;
-
-        for i in 3..=upper {
-            if num % i == 0 {
-                return false;
-            }
-        }
-
-        true
-    }
 }
 
 problem!{
