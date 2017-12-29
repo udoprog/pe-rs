@@ -6,10 +6,11 @@
 #![feature(nonzero)]
 #![feature(vec_remove_item)]
 
+mod comp_sieve;
 mod hex_slice;
-mod sieve;
-mod permutation;
 mod input;
+mod permutation;
+mod sieve;
 
 extern crate sha2;
 extern crate num_bigint;
@@ -177,5 +178,6 @@ modules![
     p043,
     p044,
     p045,
+    p046,
     p067,
 ];
