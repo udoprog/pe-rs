@@ -10,6 +10,7 @@ mod comp_sieve;
 mod hex_slice;
 mod input;
 mod permutation;
+mod combination;
 mod sieve;
 mod prime;
 
@@ -184,5 +185,6 @@ modules![
     p048,
     p049,
     p050,
+    p051,
     p067,
 ];
