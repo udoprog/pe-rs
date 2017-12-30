@@ -2,8 +2,7 @@
 
 use num::BigUint;
 use num::pow::pow;
-
-use p055::big_digits;
+use digits::digits;
 
 fn run() -> u64 {
     let mut max = 0u64;
@@ -11,7 +10,7 @@ fn run() -> u64 {
     for a in 0u32..100 {
         for b in 0usize..100 {
             let a: BigUint = a.into();
-            max = u64::max(max, big_digits(pow(a, b)).map(|b| b as u64).sum::<u64>());
+            max = u64::max(max, digits(pow(a, b)).map(|b| b as u64).sum::<u64>());
         }
     }
 

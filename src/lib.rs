@@ -13,6 +13,7 @@ mod permutation;
 mod combination;
 mod sieve;
 mod prime;
+mod digits;
 
 extern crate sha2;
 extern crate num;
