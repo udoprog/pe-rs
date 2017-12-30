@@ -1,7 +1,7 @@
 /// Keywords: sequences, fib
 
 use p002::Fib;
-use num_bigint::BigUint;
+use num::BigUint;
 
 fn run(digits: u64) -> u64 {
     let target = (0..(digits - 1)).fold(1u32.into(), |s, _| s * 10u32);

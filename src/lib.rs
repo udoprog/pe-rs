@@ -15,8 +15,7 @@ mod sieve;
 mod prime;
 
 extern crate sha2;
-extern crate num_bigint;
-extern crate num_traits;
+extern crate num;
 extern crate test;
 extern crate core;
 
@@ -189,5 +188,6 @@ modules![
     p052,
     p053,
     p054,
+    p055,
     p067,
 ];

@@ -2,8 +2,8 @@
 
 use std::collections::HashSet;
 use sieve::Sieve;
-use num_bigint::BigUint;
-use num_traits::pow::pow;
+use num::BigUint;
+use num::pow::pow;
 
 /// Here to verify results.
 fn bignum<A, B>(a: A, b: B) -> u32
