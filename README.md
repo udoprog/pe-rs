@@ -1,4 +1,4 @@
-# Rust stdlib-only solutions to Project Euler
+# Rust solutions to Project Euler
 
 **Spoiler Warning:** I'm publishing these here since I find it really interesting reading through
 other solutions on Github, and want to provide these as a source for others to look through if they
