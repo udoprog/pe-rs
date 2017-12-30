@@ -15,10 +15,10 @@ mod sieve;
 mod prime;
 mod digits;
 
-extern crate sha2;
-extern crate num;
-extern crate test;
 extern crate core;
+extern crate num;
+extern crate sha2;
+extern crate test;
 
 /// Function used to hash answers.
 ///
@@ -134,7 +134,7 @@ macro_rules! modules {
     }
 }
 
-modules![
+modules!{
     p001,
     p002,
     p003,
@@ -192,4 +192,4 @@ modules![
     p055,
     p056,
     p067,
-];
+}

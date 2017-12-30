@@ -17,7 +17,10 @@ impl<'a, T> Combinations<'a, T> {
     }
 }
 
-impl<'a, T> Iterator for Combinations<'a, T> where T: Copy {
+impl<'a, T> Iterator for Combinations<'a, T>
+where
+    T: Copy,
+{
     type Item = Vec<T>;
 
     fn next(&mut self) -> Option<Self::Item> {

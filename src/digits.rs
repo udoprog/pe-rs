@@ -8,12 +8,13 @@ pub struct Digits<T> {
 }
 
 impl<T> Iterator for Digits<T>
-    where T: Clone,
-          T: cmp::Ord,
-          T: From<u32>,
-          T: ops::Rem<u32, Output=T>,
-          T: ops::Div<u32, Output=T>,
-          T: ToPrimitive
+where
+    T: Clone,
+    T: cmp::Ord,
+    T: From<u32>,
+    T: ops::Rem<u32, Output = T>,
+    T: ops::Div<u32, Output = T>,
+    T: ToPrimitive,
 {
     type Item = u8;
 
@@ -29,12 +30,13 @@ impl<T> Iterator for Digits<T>
 }
 
 pub fn digits<T>(value: T) -> Digits<T>
-    where T: Clone,
-          T: cmp::Ord,
-          T: From<u32>,
-          T: ops::Rem<u32, Output=T>,
-          T: ops::Div<u32, Output=T>,
-          T: ToPrimitive
+where
+    T: Clone,
+    T: cmp::Ord,
+    T: From<u32>,
+    T: ops::Rem<u32, Output = T>,
+    T: ops::Div<u32, Output = T>,
+    T: ToPrimitive,
 {
     Digits {
         value: value,

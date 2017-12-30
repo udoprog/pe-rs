@@ -7,7 +7,10 @@ fn main() {
     let mut args = env::args();
     args.next();
 
-    let problem: u64 = args.next().expect("number of problem").parse().expect("a problem number");
+    let problem: u64 = args.next()
+        .expect("number of problem")
+        .parse()
+        .expect("a problem number");
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
 
     let path = root.join("src").join(format!("p{:03}.rs", problem));
@@ -20,7 +23,8 @@ fn main() {
 
     let mut f = File::create(path).expect("bad file");
 
-    f.write_all(b"/// Keywords: none
+    f.write_all(
+        b"/// Keywords: none
 
 fn run() -> u64 {
     0
@@ -31,5 +35,6 @@ problem!{
         q => (run(), 0),
     ];
 }
-").expect("failed to write file");
+",
+    ).expect("failed to write file");
 }

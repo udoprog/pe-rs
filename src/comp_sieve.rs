@@ -50,11 +50,7 @@ impl<Idx> CompSieve<Idx, ops::RangeFrom<Idx>> {
 impl<Idx, I> Iterator for CompSieve<Idx, I>
 where
     I: Iterator<Item = Idx>,
-    Idx: Eq
-        + hash::Hash
-        + Copy
-        + ops::Add<Output = Idx>
-        + ops::Mul<Output = Idx>,
+    Idx: Eq + hash::Hash + Copy + ops::Add<Output = Idx> + ops::Mul<Output = Idx>,
 {
     type Item = Idx;
 
