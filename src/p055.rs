@@ -2,6 +2,23 @@
 
 use num::{BigUint, ToPrimitive};
 
+pub fn big_digits(n: BigUint) -> impl Iterator<Item = u8> {
+    use std::iter;
+    let zero: BigUint = 0u32.into();
+
+    iter::repeat(()).scan(n, move |s, _| {
+        let v = s.to_owned();
+
+        if v > zero {
+            let o = (v.clone() % 10u32).to_u8().expect("bad u8");
+            *s = v.clone() / 10u32;
+            Some(o)
+        } else {
+            None
+        }
+    })
+}
+
 fn run() -> u64 {
     let mut count = 0;
 
@@ -24,7 +41,7 @@ fn run() -> u64 {
 
     fn add(n: BigUint) -> BigUint {
         let add: BigUint = 0u32.into();
-        let add = digits(n).fold(add, |a, b| (a + b) * 10u32);
+        let add = big_digits(n).fold(add, |a, b| (a + b) * 10u32);
         add / 10u32
     }
 
@@ -40,23 +57,6 @@ fn run() -> u64 {
         }
 
         inverse
-    }
-
-    fn digits(n: BigUint) -> impl Iterator<Item = u8> {
-        use std::iter;
-        let zero: BigUint = 0u32.into();
-
-        iter::repeat(()).scan(n, move |s, _| {
-            let v = s.to_owned();
-
-            if v > zero {
-                let o = (v.clone() % 10u32).to_u8().expect("bad u8");
-                *s = v.clone() / 10u32;
-                Some(o)
-            } else {
-                None
-            }
-        })
     }
 }
 
