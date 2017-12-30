@@ -1,6 +1,6 @@
 /// Keywords: none
 
-use p032::digits;
+use digits::digits;
 
 fn run() -> u64 {
     let mut factorials = [0u64; 10];

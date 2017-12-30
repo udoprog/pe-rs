@@ -1,6 +1,6 @@
 /// Keywords: none
 
-use p032::digits;
+use digits::digits;
 use prime::is_prime;
 
 fn run() -> u64 {

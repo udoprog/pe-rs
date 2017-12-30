@@ -1,6 +1,6 @@
 /// Keywords: none
 
-use p032::digits;
+use digits::digits;
 
 /// Simple GCD implementation.
 pub fn gcd(mut a: u64, mut b: u64) -> u64 {

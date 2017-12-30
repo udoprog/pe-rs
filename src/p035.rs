@@ -1,7 +1,7 @@
 /// Keywords: primes, rotate
 
 use sieve::FixedSieve;
-use p032::digits;
+use digits::digits;
 
 fn run(limit: usize) -> u64 {
     let mut primes = vec![false; limit];

@@ -1,6 +1,6 @@
 /// Keywords: digits
 
-use p032::digits;
+use digits::digits;
 
 fn run() -> u64 {
     let mut count = 0;

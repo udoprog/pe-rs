@@ -1,7 +1,7 @@
 /// Keywords: none
 
 use sieve::Sieve;
-use p032::digits;
+use digits::digits;
 use combination::Combinations;
 use std::collections::HashMap;
 

@@ -1,11 +1,12 @@
 /// Keywords: pandigital
 
-use p032::{is_pandigital, digits};
+use digits::digits;
+use p032::is_pandigital;
 
 fn run() -> u64 {
     let mut max = 0;
 
-    for n in 1..100000 {
+    for n in 1u64..100000 {
         let mut products = vec![];
         let mut digs = vec![];
 

@@ -1,6 +1,7 @@
 /// Keywords: combinations, digits, pandigital
 
 use std::collections::HashSet;
+use digits::digits;
 
 use std::mem;
 
@@ -24,22 +25,6 @@ pub fn is_pandigital(digits: &[u8]) -> bool {
     }
 
     found.into_iter().take(digits.len()).all(|n| *n)
-}
-
-pub fn digits(n: u64) -> impl Iterator<Item = u8> {
-    use std::iter;
-
-    iter::repeat(()).scan(n, |s, _| {
-        let v = *s;
-
-        if v > 0 {
-            let o = (v % 10) as u8;
-            *s = v / 10;
-            Some(o)
-        } else {
-            None
-        }
-    })
 }
 
 fn run() -> u64 {
@@ -66,7 +51,7 @@ fn run() -> u64 {
 
 problem!{
     tests => [
-        digits_1 => (digits(123456789).collect::<Vec<_>>(), vec![9,8,7,6,5,4,3,2,1]),
+        digits_1 => (digits(123456789u32).collect::<Vec<_>>(), vec![9,8,7,6,5,4,3,2,1]),
         is_pandigital_1 => (is_pandigital(&[1, 2, 3, 5]), false),
         is_pandigital_2 => (is_pandigital(&[1, 2, 3, 4, 5]), true),
         is_pandigital_3 => (is_pandigital(&[1, 2, 3, 4, 5, 6, 7, 8, 9]), true),
