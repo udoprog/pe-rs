@@ -5,6 +5,7 @@
 #![feature(io)]
 #![feature(nonzero)]
 #![feature(vec_remove_item)]
+#![feature(drain_filter)]
 
 mod comp_sieve;
 mod hex_slice;
@@ -194,5 +195,6 @@ modules!{
     p057,
     p058,
     p059,
+    p060,
     p067,
 }
